@@ -1,0 +1,30 @@
+name: Resualbe  workflow
+on:
+    workflow_call:
+          inputs:
+            xxx: 
+              description: 'A build passed from the caller workflow'
+              default: build   
+              required: false
+              type: string
+          secrets:                       
+            some_secret:
+              description: 'A token passed from the caller workflow'
+              required: true    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts 
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{inputs.xxx}}           
+          path: build                 
+
+      - name: Output contents          
+        run: |
+          ls -R 
+          echo ${{secrets.some_secret}}
+
+      - name: Deploy
+        run: echo "Deploying..."
