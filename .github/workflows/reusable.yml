@@ -9,7 +9,7 @@ on:
               type: string
           secrets:                       
             some_secret:
-              description: 'A token passed from the caller workflow'
+              description: 'A some_secret passed from the caller workflow'
               required: true    
 jobs:
   deploy:
